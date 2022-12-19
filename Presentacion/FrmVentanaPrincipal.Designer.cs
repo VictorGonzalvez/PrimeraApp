@@ -45,17 +45,23 @@ namespace Presentacion
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
+            this.btnRefrescar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentanaPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxVentanaPrincipal)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvVentanaPrincipal
             // 
+            this.dgvVentanaPrincipal.AllowUserToAddRows = false;
+            this.dgvVentanaPrincipal.AllowUserToDeleteRows = false;
+            this.dgvVentanaPrincipal.AllowUserToOrderColumns = true;
             this.dgvVentanaPrincipal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentanaPrincipal.Location = new System.Drawing.Point(12, 61);
             this.dgvVentanaPrincipal.Name = "dgvVentanaPrincipal";
-            this.dgvVentanaPrincipal.Size = new System.Drawing.Size(540, 230);
+            this.dgvVentanaPrincipal.ReadOnly = true;
+            this.dgvVentanaPrincipal.Size = new System.Drawing.Size(627, 230);
             this.dgvVentanaPrincipal.TabIndex = 0;
+            this.dgvVentanaPrincipal.SelectionChanged += new System.EventHandler(this.dgvVentanaPrincipal_SelectionChanged);
             // 
             // Articulo
             // 
@@ -86,16 +92,17 @@ namespace Presentacion
             // 
             this.cboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategorias.FormattingEnabled = true;
-            this.cboCategorias.Location = new System.Drawing.Point(461, 35);
+            this.cboCategorias.Location = new System.Drawing.Point(461, 34);
             this.cboCategorias.Name = "cboCategorias";
             this.cboCategorias.Size = new System.Drawing.Size(150, 21);
             this.cboCategorias.TabIndex = 4;
             // 
             // pbxVentanaPrincipal
             // 
-            this.pbxVentanaPrincipal.Location = new System.Drawing.Point(558, 61);
+            this.pbxVentanaPrincipal.Location = new System.Drawing.Point(645, 62);
             this.pbxVentanaPrincipal.Name = "pbxVentanaPrincipal";
             this.pbxVentanaPrincipal.Size = new System.Drawing.Size(230, 230);
+            this.pbxVentanaPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxVentanaPrincipal.TabIndex = 5;
             this.pbxVentanaPrincipal.TabStop = false;
             // 
@@ -130,7 +137,7 @@ namespace Presentacion
             // 
             this.cboPrecios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrecios.FormattingEnabled = true;
-            this.cboPrecios.Location = new System.Drawing.Point(617, 35);
+            this.cboPrecios.Location = new System.Drawing.Point(617, 34);
             this.cboPrecios.Name = "cboPrecios";
             this.cboPrecios.Size = new System.Drawing.Size(150, 21);
             this.cboPrecios.TabIndex = 9;
@@ -138,7 +145,7 @@ namespace Presentacion
             // lblOrdenarPor
             // 
             this.lblOrdenarPor.AutoSize = true;
-            this.lblOrdenarPor.Location = new System.Drawing.Point(614, 19);
+            this.lblOrdenarPor.Location = new System.Drawing.Point(617, 19);
             this.lblOrdenarPor.Name = "lblOrdenarPor";
             this.lblOrdenarPor.Size = new System.Drawing.Size(67, 13);
             this.lblOrdenarPor.TabIndex = 10;
@@ -146,7 +153,7 @@ namespace Presentacion
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 297);
+            this.btnAgregar.Location = new System.Drawing.Point(12, 298);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(94, 23);
             this.btnAgregar.TabIndex = 11;
@@ -155,7 +162,7 @@ namespace Presentacion
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(112, 297);
+            this.btnModificar.Location = new System.Drawing.Point(112, 298);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(99, 23);
             this.btnModificar.TabIndex = 12;
@@ -164,7 +171,7 @@ namespace Presentacion
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(217, 297);
+            this.btnEliminar.Location = new System.Drawing.Point(217, 298);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(104, 23);
             this.btnEliminar.TabIndex = 13;
@@ -173,27 +180,37 @@ namespace Presentacion
             // 
             // btnMarcas
             // 
-            this.btnMarcas.Location = new System.Drawing.Point(327, 297);
+            this.btnMarcas.Location = new System.Drawing.Point(327, 298);
             this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(226, 23);
+            this.btnMarcas.Size = new System.Drawing.Size(270, 23);
             this.btnMarcas.TabIndex = 14;
             this.btnMarcas.Text = "Lista de Marcas";
             this.btnMarcas.UseVisualStyleBackColor = true;
             // 
             // btnCategorias
             // 
-            this.btnCategorias.Location = new System.Drawing.Point(558, 297);
+            this.btnCategorias.Location = new System.Drawing.Point(605, 298);
             this.btnCategorias.Name = "btnCategorias";
-            this.btnCategorias.Size = new System.Drawing.Size(230, 23);
+            this.btnCategorias.Size = new System.Drawing.Size(270, 23);
             this.btnCategorias.TabIndex = 15;
             this.btnCategorias.Text = "Lista de Categorias";
             this.btnCategorias.UseVisualStyleBackColor = true;
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Location = new System.Drawing.Point(773, 32);
+            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.Size = new System.Drawing.Size(102, 23);
+            this.btnRefrescar.TabIndex = 17;
+            this.btnRefrescar.Text = "Refrescar";
+            this.btnRefrescar.UseVisualStyleBackColor = true;
             // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 325);
+            this.ClientSize = new System.Drawing.Size(887, 325);
+            this.Controls.Add(this.btnRefrescar);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btnEliminar);
@@ -241,6 +258,7 @@ namespace Presentacion
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
+        private System.Windows.Forms.Button btnRefrescar;
     }
 }
 
