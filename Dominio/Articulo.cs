@@ -17,6 +17,7 @@ namespace Dominio
 
         public string ImagenUrl { get; set; }
         public string Precio { get; set; }
+        public int Id { get; set; }
 
 
     }
