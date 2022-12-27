@@ -27,10 +27,51 @@ namespace Negocio
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     lista.Add(aux);
-
                 }
                 return lista;
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<string> cargarCbo()
+        {
+            List<string> lista = new List<string>();
+            string consulta = "select Descripcion from CATEGORIAS";
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                lista.Add("Todos");
+                while (datos.Lector.Read())
+                {
+                    string aux;
+                    aux = (string)datos.Lector["Descripcion"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void eliminarCategoria(Categoria seleccionado)
+        {
+            try
+            {
+                datos.setearConsulta("Delete from CATEGORIAS where Id = @Id");
+                datos.setearParametro("@Id", seleccionado.Id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -41,6 +82,25 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public void agregarCategoria(string nuevo)
+        {
+            try
+            {
+                datos.setearConsulta("insert into Categorias values (@nuevo)");
+                datos.setearParametro("@nuevo", nuevo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

@@ -39,6 +39,68 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        
+        public List<string> cargarCbo()
+        {
+            List<string> lista = new List<string>();
+            string consulta = "Select Descripcion from Marcas";
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                lista.Add("Todos");
+                while (datos.Lector.Read())
+                {
+                    string aux;
+                    aux = (string)datos.Lector["Descripcion"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void eliminarMarca(Marca seleccionado)
+        {
+            try
+            {
+                datos.setearConsulta("Delete from Marcas where Id = @Id");
+                datos.setearParametro("@Id", seleccionado.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregarMarca(string nuevo)
+        {
+            try
+            {
+                datos.setearConsulta("insert into MARCAS values (@nuevo)");
+                datos.setearParametro("@nuevo", nuevo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }

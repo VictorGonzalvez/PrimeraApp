@@ -13,15 +13,12 @@ namespace Negocio
         public List<Articulo> listar()
         {
             List<Articulo> lista = new List<Articulo>();
-            string consulta = "select a.Id, Codigo, Nombre, a.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, ImagenUrl, Precio from ARTICULOS A join MARCAS M on a.IdMarca = m.id join CATEGORIAS C on a.IdCategoria = c.id";
-            
+            string consulta = "select a.Id, Codigo, Nombre, a.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, ImagenUrl, Precio, IdCategoria, IdMarca from ARTICULOS A join MARCAS M on a.IdMarca = m.id join CATEGORIAS C on a.IdCategoria = c.id";            
             decimal x;
             try
             {
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
-
-
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -34,19 +31,16 @@ namespace Negocio
                     aux.Marca = new Marca();
                     aux.Tipo = new Categoria();
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Tipo.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Tipo.Id = (int)datos.Lector["IdCategoria"];
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
-                    
-
-                    lista.Add(aux);
-                    
+                    lista.Add(aux);    
                 }
-                return lista;
-                
+                return lista;                
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -84,9 +78,29 @@ namespace Negocio
             }
 
         }
-        public void modificarArticulo()
+        public void modificarArticulo(Articulo articuloModificar)
         {
-
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @cod, Nombre = @nomb, Descripcion = @desc, IdMarca = @IdMarca, IdCategoria = @IdCategoria, ImagenUrl = @Img, Precio = @Precio where id = @Id");
+                datos.setearParametro("@cod", articuloModificar.Codigo);
+                datos.setearParametro("@nomb", articuloModificar.Nombre);
+                datos.setearParametro("@desc", articuloModificar.Descripcion);
+                datos.setearParametro("@IdMarca", articuloModificar.Marca.Id);
+                datos.setearParametro("@IdCategoria", articuloModificar.Tipo.Id);
+                datos.setearParametro("@img", articuloModificar.ImagenUrl);
+                datos.setearParametro("@Precio", articuloModificar.Precio);
+                datos.setearParametro("@Id", articuloModificar.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
         public void eliminarArticulo(int id)
         {
@@ -94,18 +108,83 @@ namespace Negocio
             {
                 datos.setearConsulta("delete from ARTICULOS where id = " + id);
                 datos.ejecutarAccion();
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
-
             }
         }
+        public List<Articulo> listarAvanzado(string categoria, string marca, string orden)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            string consulta = "select a.Id, Codigo, Nombre, a.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, ImagenUrl, Precio, IdCategoria, IdMarca from ARTICULOS A join MARCAS M on a.IdMarca = m.id join CATEGORIAS C on a.IdCategoria = c.id";
+
+            if (categoria != "Todos" || marca != "Todos")
+            {
+                consulta += " Where ";
+                if (categoria != "Todos" && marca != "Todos")
+                    consulta += " c.Descripcion = '" + categoria + "' and m.descripcion = '" + marca + "'";
+
+                else            
+                    if(categoria != "Todos")                
+                        consulta += " c.descripcion = '" + categoria + "'";                
+                    else                
+                        consulta += "m.descripcion = '" + marca + "'";
+
+            }
+            switch (orden)
+            {
+                case "Nombre A-Z":
+                    consulta += " order by Nombre asc";
+                    break;
+                case "Nombre Z-A":
+                    consulta += " order by Nombre Desc";
+                    break;
+                case "Precio Menor a Mayor":
+                    consulta += " order by Precio asc ";
+                    break;
+                default:
+                    consulta += " order by Precio desc";
+                    break;
+            }
+            decimal x;
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    x = (decimal)datos.Lector["Precio"];
+                    aux.Precio = x.ToString("0.00");
+                    aux.Marca = new Marca();
+                    aux.Tipo = new Categoria();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Tipo.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Tipo.Id = (int)datos.Lector["IdCategoria"];
+                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

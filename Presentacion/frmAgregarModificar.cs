@@ -14,18 +14,53 @@ namespace Presentacion
 {
     public partial class frmAgregarModificar : Form
     {
-        public frmAgregarModificar()
+        private Articulo articulo = null;
+        bool prueba = false;
+        public frmAgregarModificar()//Ventana Nuevo articulo
         {
             InitializeComponent();
-            Text = "Agregar";
+        }
+        public frmAgregarModificar(Articulo articulo)//Ventana Modificar Articulo
+        {
+            InitializeComponent();
+            this.articulo = articulo;
         }
         private CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
         private MarcaNegocio marcaNegocio = new MarcaNegocio();
         private ArticuloNegocio articuloNegocio = new ArticuloNegocio();
         private void frmAgregarModificar_Load(object sender, EventArgs e)
         {
-            cboCategoria.DataSource = categoriaNegocio.listar();
-            cboMarca.DataSource = marcaNegocio.listar();
+            try
+            {
+                cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "Descripcion";
+
+                cboMarca.DataSource = marcaNegocio.listar();
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "Descripcion";
+                
+                if (articulo != null)
+                {
+                    txtCodigoArticulo.Text = articulo.Codigo;
+                    txtNombre.Text = articulo.Nombre;
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtImagen.Text = articulo.ImagenUrl;
+                    cargarImagen(articulo.ImagenUrl);
+                    txtPrecio.Text = articulo.Precio;
+                    cboCategoria.SelectedValue = articulo.Tipo.Id;
+                    cboMarca.SelectedValue = articulo.Marca.Id;
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString()) ;
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -35,29 +70,73 @@ namespace Presentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo();
+            
             try
             {
-                nuevo.Codigo = txtCodigoArticulo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Marca = new Marca();
-                nuevo.Marca = (Marca)cboMarca.SelectedItem;
-                nuevo.Tipo = new Categoria();
-                nuevo.Tipo = (Categoria)cboCategoria.SelectedItem;
-                nuevo.ImagenUrl = txtImagen.Text;
-                nuevo.Precio = txtPrecio.Text;
-                articuloNegocio.agregarArticulo(nuevo);
-                MessageBox.Show("Agregado exitosamente");
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                articulo.Codigo = txtCodigoArticulo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Marca = new Marca();
+                articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.Tipo = new Categoria();
+                articulo.Tipo = (Categoria)cboCategoria.SelectedItem;
+                articulo.ImagenUrl = txtImagen.Text;
+                articulo.Precio = txtPrecio.Text;
+
+                if(articulo.Id == 0)
+                {
+                    articuloNegocio.agregarArticulo(articulo);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+                else
+                {
+                    articuloNegocio.modificarArticulo(articulo);
+                    MessageBox.Show("Modificado Exitosamente");
+                }
+
+                    
                 Close();
-
-
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString()) ;
             }
+        }
+        private void cargarImagen(string urlImagen)
+        {
+            try
+            {
+                pbxAgregarModificar.Load(urlImagen);
+            }
+            catch (Exception)
+            {
+
+                pbxAgregarModificar.Load("https://cdn-icons-png.flaticon.com/512/85/85488.png");
+            }
+        }
+
+        private void btnLimpiarCampo_Click(object sender, EventArgs e)
+        {
+            txtImagen.Clear();
+        }
+
+        private void txtImagen_Enter(object sender, EventArgs e)
+        {
+            if (!prueba)
+            {
+                
+                MessageBox.Show("Ingrese una Url de internet o cargue una imagen local.");
+                prueba = true;
+            }
+        }
+
+        private void btnProbarImagen_Click(object sender, EventArgs e)
+        {
+            cargarImagen(txtImagen.Text);
         }
     }
 }

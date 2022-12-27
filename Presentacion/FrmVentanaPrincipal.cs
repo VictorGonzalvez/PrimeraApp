@@ -16,6 +16,8 @@ namespace Presentacion
     {
         private List<Articulo> listaArticulos;
         private ArticuloNegocio negocio = new ArticuloNegocio();
+        private CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+        private MarcaNegocio marcaNegocio = new MarcaNegocio();
         public FrmVentanaPrincipal()
         {
             InitializeComponent();
@@ -27,17 +29,11 @@ namespace Presentacion
             listaArticulos = negocio.listar();
             dgvVentanaPrincipal.DataSource = listaArticulos;
             cargarImagen(listaArticulos[0].ImagenUrl);
-            ocultarColumna("ImagenUrl");
-            ocultarColumna("Descripcion");
+            cargarCombos();
             
-            
+            ocultarColumnas();
         }
-
-        private void ocultarColumna(string columna)
-        {
-            dgvVentanaPrincipal.Columns[columna].Visible = false;
-        }
-        private void cargarImagen(string urlImagen)
+        public void cargarImagen(string urlImagen)
         {
             try
             {
@@ -49,6 +45,18 @@ namespace Presentacion
                 pbxVentanaPrincipal.Load("https://cdn-icons-png.flaticon.com/512/85/85488.png");
             }
         }
+        public void cargarCombos()
+        {
+            cboCategorias.DataSource = categoriaNegocio.cargarCbo();
+            cboMarcas.DataSource = marcaNegocio.cargarCbo();
+            List<string> aux = new List<string>();
+            aux.Add("Nombre A-Z");
+            aux.Add("Nombre Z-A");
+            aux.Add("Precio Menor a Mayor");
+            aux.Add("Precio Mayor a Menor");
+            cboOrden.DataSource = aux;
+
+        }
 
         private void dgvVentanaPrincipal_SelectionChanged(object sender, EventArgs e)
         {
@@ -59,7 +67,7 @@ namespace Presentacion
 
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
-            cargar();
+            dgvVentanaPrincipal.DataSource = negocio.listarAvanzado(cboCategorias.SelectedItem.ToString(), cboMarcas.SelectedItem.ToString(), cboOrden.SelectedItem.ToString());
         }
 
         private void txtDescripción_TextChanged(object sender, EventArgs e)
@@ -78,6 +86,7 @@ namespace Presentacion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarModificar ventana = new frmAgregarModificar();
+            ventana.Text = "Nuevo Articulo";
             ventana.ShowDialog();
             cargar();
         }
@@ -105,6 +114,64 @@ namespace Presentacion
         private void cargar()
         {
             dgvVentanaPrincipal.DataSource = negocio.listar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo articuloModificar ;
+            articuloModificar =    (Articulo)dgvVentanaPrincipal.CurrentRow.DataBoundItem;
+            frmAgregarModificar ventanaModificar = new frmAgregarModificar(articuloModificar);
+            ventanaModificar.Text = articuloModificar.Nombre;
+            ventanaModificar.ShowDialog();
+            cargar();
+            
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtFiltro.Text;
+
+            if(filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+            dgvVentanaPrincipal.DataSource = null;
+            dgvVentanaPrincipal.DataSource = listaFiltrada;
+            ocultarColumnas();
+            
+
+        }
+        private void ocultarColumna(string columna)
+        {
+            dgvVentanaPrincipal.Columns[columna].Visible = false;
+        }
+        private void ocultarColumnas()
+        {
+            ocultarColumna("ImagenUrl");
+            ocultarColumna("Descripcion");
+            ocultarColumna("Id");
+        }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            frmCategoriasMarcas ventana = new frmCategoriasMarcas(true);
+            ventana.Text = "Lista de Marcas";
+            ventana.ShowDialog();
+            cargarCombos();
+        }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            frmCategoriasMarcas ventana = new frmCategoriasMarcas();
+            ventana.Text = "Lista de Categorias";
+            ventana.ShowDialog();
+            cargarCombos();
         }
     }
 }

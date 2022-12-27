@@ -38,14 +38,14 @@ namespace Presentacion
             this.lblAvanzados = new System.Windows.Forms.Label();
             this.lblMarca = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.cboPrecios = new System.Windows.Forms.ComboBox();
+            this.cboOrden = new System.Windows.Forms.ComboBox();
             this.lblOrdenarPor = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
-            this.btnRefrescar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.txtDescripción = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentanaPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxVentanaPrincipal)).BeginInit();
@@ -81,6 +81,7 @@ namespace Presentacion
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(218, 20);
             this.txtFiltro.TabIndex = 0;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // cboMarcas
             // 
@@ -137,14 +138,14 @@ namespace Presentacion
             this.lblCategoria.TabIndex = 8;
             this.lblCategoria.Text = "Categoria";
             // 
-            // cboPrecios
+            // cboOrden
             // 
-            this.cboPrecios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrecios.FormattingEnabled = true;
-            this.cboPrecios.Location = new System.Drawing.Point(617, 34);
-            this.cboPrecios.Name = "cboPrecios";
-            this.cboPrecios.Size = new System.Drawing.Size(150, 21);
-            this.cboPrecios.TabIndex = 3;
+            this.cboOrden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOrden.FormattingEnabled = true;
+            this.cboOrden.Location = new System.Drawing.Point(617, 34);
+            this.cboOrden.Name = "cboOrden";
+            this.cboOrden.Size = new System.Drawing.Size(150, 21);
+            this.cboOrden.TabIndex = 3;
             // 
             // lblOrdenarPor
             // 
@@ -173,6 +174,7 @@ namespace Presentacion
             this.btnModificar.TabIndex = 8;
             this.btnModificar.Text = "Modificar Articulo";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -192,6 +194,7 @@ namespace Presentacion
             this.btnMarcas.TabIndex = 10;
             this.btnMarcas.Text = "Lista de Marcas";
             this.btnMarcas.UseVisualStyleBackColor = true;
+            this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
             // 
             // btnCategorias
             // 
@@ -201,16 +204,17 @@ namespace Presentacion
             this.btnCategorias.TabIndex = 11;
             this.btnCategorias.Text = "Lista de Categorias";
             this.btnCategorias.UseVisualStyleBackColor = true;
+            this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
             // 
-            // btnRefrescar
+            // btnBuscar
             // 
-            this.btnRefrescar.Location = new System.Drawing.Point(773, 32);
-            this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(102, 23);
-            this.btnRefrescar.TabIndex = 4;
-            this.btnRefrescar.Text = "Refrescar";
-            this.btnRefrescar.UseVisualStyleBackColor = true;
-            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
+            this.btnBuscar.Location = new System.Drawing.Point(773, 32);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(102, 23);
+            this.btnBuscar.TabIndex = 4;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnRefrescar_Click);
             // 
             // txtDescripción
             // 
@@ -230,14 +234,14 @@ namespace Presentacion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 325);
             this.Controls.Add(this.txtDescripción);
-            this.Controls.Add(this.btnRefrescar);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblOrdenarPor);
-            this.Controls.Add(this.cboPrecios);
+            this.Controls.Add(this.cboOrden);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.lblAvanzados);
@@ -273,14 +277,14 @@ namespace Presentacion
         private System.Windows.Forms.Label lblAvanzados;
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.ComboBox cboPrecios;
+        private System.Windows.Forms.ComboBox cboOrden;
         private System.Windows.Forms.Label lblOrdenarPor;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
-        private System.Windows.Forms.Button btnRefrescar;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtDescripción;
     }
 }
