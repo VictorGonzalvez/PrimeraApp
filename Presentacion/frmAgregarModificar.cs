@@ -35,11 +35,9 @@ namespace Presentacion
                 cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
-
                 cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
-                cboMarca.DisplayMember = "Descripcion";
-                
+                cboMarca.DisplayMember = "Descripcion";               
                 if (articulo != null)
                 {
                     txtCodigoArticulo.Text = articulo.Codigo;
@@ -47,27 +45,20 @@ namespace Presentacion
                     txtDescripcion.Text = articulo.Descripcion;
                     txtImagen.Text = articulo.ImagenUrl;
                     cargarImagen(articulo.ImagenUrl);
-                    txtPrecio.Text = articulo.Precio;
+                    txtPrecio.Text = articulo.Precio.Replace(",", ".");
                     cboCategoria.SelectedValue = articulo.Tipo.Id;
                     cboMarca.SelectedValue = articulo.Marca.Id;
-
-
                 }
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString()) ;
             }
-
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             
@@ -75,7 +66,6 @@ namespace Presentacion
             {
                 if (articulo == null)
                     articulo = new Articulo();
-
                 articulo.Codigo = txtCodigoArticulo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
@@ -84,25 +74,27 @@ namespace Presentacion
                 articulo.Tipo = new Categoria();
                 articulo.Tipo = (Categoria)cboCategoria.SelectedItem;
                 articulo.ImagenUrl = txtImagen.Text;
-                articulo.Precio = txtPrecio.Text;
 
-                if(articulo.Id == 0)
+                articulo.Precio = txtPrecio.Text;
+                if (txtNombre.Text != "")
                 {
-                    articuloNegocio.agregarArticulo(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    if (articulo.Id == 0)
+                    {
+                        articuloNegocio.agregarArticulo(articulo);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+                    else
+                    {
+                        articuloNegocio.modificarArticulo(articulo);
+                        MessageBox.Show("Modificado Exitosamente");
+                    }
+                    Close();
                 }
                 else
-                {
-                    articuloNegocio.modificarArticulo(articulo);
-                    MessageBox.Show("Modificado Exitosamente");
-                }
-
-                    
-                Close();
+                    MessageBox.Show("Debe ingresar obligatoriamente un Nombre para el articulo.");
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString()) ;
             }
         }
@@ -118,25 +110,40 @@ namespace Presentacion
                 pbxAgregarModificar.Load("https://cdn-icons-png.flaticon.com/512/85/85488.png");
             }
         }
-
         private void btnLimpiarCampo_Click(object sender, EventArgs e)
         {
             txtImagen.Clear();
         }
-
         private void txtImagen_Enter(object sender, EventArgs e)
         {
             if (!prueba)
-            {
-                
+            {               
                 MessageBox.Show("Ingrese una Url de internet o cargue una imagen local.");
                 prueba = true;
             }
         }
-
         private void btnProbarImagen_Click(object sender, EventArgs e)
         {
             cargarImagen(txtImagen.Text);
+        }
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtPrecio.Text.Contains("."))
+            {
+                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    MessageBox.Show("Ingrese solo un punto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (!(e.KeyChar == 46)))
+                {
+                    MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                }
+            }          
         }
     }
 }

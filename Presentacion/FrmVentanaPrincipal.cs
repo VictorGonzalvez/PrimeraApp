@@ -30,7 +30,7 @@ namespace Presentacion
             dgvVentanaPrincipal.DataSource = listaArticulos;
             cargarImagen(listaArticulos[0].ImagenUrl);
             cargarCombos();
-            
+            dgvVentanaPrincipal.AutoResizeColumns();
             ocultarColumnas();
         }
         public void cargarImagen(string urlImagen)
@@ -57,32 +57,16 @@ namespace Presentacion
             cboOrden.DataSource = aux;
 
         }
-
         private void dgvVentanaPrincipal_SelectionChanged(object sender, EventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvVentanaPrincipal.CurrentRow.DataBoundItem;
-            cargarImagen(seleccionado.ImagenUrl);
-            txtDescripción.Text = seleccionado.Descripcion;
+            cargarImagen(seleccionado.ImagenUrl);           
+            richTextBoxDescripcion.Text = seleccionado.Descripcion;           
         }
-
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
             dgvVentanaPrincipal.DataSource = negocio.listarAvanzado(cboCategorias.SelectedItem.ToString(), cboMarcas.SelectedItem.ToString(), cboOrden.SelectedItem.ToString());
         }
-
-        private void txtDescripción_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                txtDescripción.Text = "Sin descripción";
-            }
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarModificar ventana = new frmAgregarModificar();
@@ -90,7 +74,6 @@ namespace Presentacion
             ventana.ShowDialog();
             cargar();
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado = new Articulo();
@@ -113,9 +96,10 @@ namespace Presentacion
         }
         private void cargar()
         {
-            dgvVentanaPrincipal.DataSource = negocio.listar();
-        }
+            dgvVentanaPrincipal.DataSource = negocio.listarOrdenado(cboOrden.SelectedItem.ToString());
+            //dgvVentanaPrincipal.DataSource = negocio.listarAvanzado(cboCategorias.SelectedItem.ToString(), cboMarcas.SelectedItem.ToString(), cboOrden.SelectedItem.ToString());
 
+        }
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo articuloModificar ;
@@ -123,10 +107,10 @@ namespace Presentacion
             frmAgregarModificar ventanaModificar = new frmAgregarModificar(articuloModificar);
             ventanaModificar.Text = articuloModificar.Nombre;
             ventanaModificar.ShowDialog();
+            
             cargar();
             
         }
-
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> listaFiltrada;
@@ -144,7 +128,8 @@ namespace Presentacion
             dgvVentanaPrincipal.DataSource = null;
             dgvVentanaPrincipal.DataSource = listaFiltrada;
             ocultarColumnas();
-            
+            dgvVentanaPrincipal.AutoResizeColumns();
+
 
         }
         private void ocultarColumna(string columna)
@@ -157,7 +142,6 @@ namespace Presentacion
             ocultarColumna("Descripcion");
             ocultarColumna("Id");
         }
-
         private void btnMarcas_Click(object sender, EventArgs e)
         {
             frmCategoriasMarcas ventana = new frmCategoriasMarcas(true);
@@ -165,13 +149,18 @@ namespace Presentacion
             ventana.ShowDialog();
             cargarCombos();
         }
-
         private void btnCategorias_Click(object sender, EventArgs e)
         {
             frmCategoriasMarcas ventana = new frmCategoriasMarcas();
             ventana.Text = "Lista de Categorias";
             ventana.ShowDialog();
-            cargarCombos();
+            //cargarCombos();
+            cargar();
+        }
+        private void cboOrden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargar();
         }
     }
+
 }

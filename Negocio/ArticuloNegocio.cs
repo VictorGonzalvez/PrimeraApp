@@ -48,6 +48,59 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Articulo> listarOrdenado(string orden)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            string consulta = "select a.Id, Codigo, Nombre, a.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, ImagenUrl, Precio, IdCategoria, IdMarca from ARTICULOS A join MARCAS M on a.IdMarca = m.id join CATEGORIAS C on a.IdCategoria = c.id";
+            switch (orden)
+            {
+                case "Nombre A-Z":
+                    consulta += " order by Nombre asc";
+                    break;
+                case "Nombre Z-A":
+                    consulta += " order by Nombre Desc";
+                    break;
+                case "Precio Menor a Mayor":
+                    consulta += " order by Precio asc ";
+                    break;
+                default:
+                    consulta += " order by Precio desc";
+                    break;
+            }
+            decimal x;
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    x = (decimal)datos.Lector["Precio"];
+                    aux.Precio = x.ToString("0.00");
+                    aux.Marca = new Marca();
+                    aux.Tipo = new Categoria();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Tipo.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Tipo.Id = (int)datos.Lector["IdCategoria"];
+                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void agregarArticulo(Articulo nuevo2)
         {
             string consulta = "insert into ARTICULOS (Codigo, Nombre, Descripcion,IdMarca, IdCategoria, ImagenUrl, Precio) values(@Codigo, @Nombre, @Descripcion ,@IdMarca, @IdCategoria, @ImagenUrl, @Precio)";
@@ -122,7 +175,6 @@ namespace Negocio
         {
             List<Articulo> lista = new List<Articulo>();
             string consulta = "select a.Id, Codigo, Nombre, a.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, ImagenUrl, Precio, IdCategoria, IdMarca from ARTICULOS A join MARCAS M on a.IdMarca = m.id join CATEGORIAS C on a.IdCategoria = c.id";
-
             if (categoria != "Todos" || marca != "Todos")
             {
                 consulta += " Where ";
@@ -134,7 +186,6 @@ namespace Negocio
                         consulta += " c.descripcion = '" + categoria + "'";                
                     else                
                         consulta += "m.descripcion = '" + marca + "'";
-
             }
             switch (orden)
             {
@@ -185,6 +236,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
 
     }
 }

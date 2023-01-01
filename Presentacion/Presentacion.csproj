@@ -111,10 +111,6 @@
       <Project>{fcc18db9-f0cf-4c51-b74d-2be4a69a5eee}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Filtros\Filtros.csproj">
-      <Project>{95655fc4-c7b3-43a6-a5f1-ab07be39ad96}</Project>
-      <Name>Filtros</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{c613ee4a-d7f8-4417-b82d-810d8b4663f4}</Project>
       <Name>Negocio</Name>

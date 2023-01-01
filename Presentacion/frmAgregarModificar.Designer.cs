@@ -74,6 +74,7 @@ namespace Presentacion
             // txtCodigoArticulo
             // 
             this.txtCodigoArticulo.Location = new System.Drawing.Point(116, 12);
+            this.txtCodigoArticulo.MaxLength = 50;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
             this.txtCodigoArticulo.Size = new System.Drawing.Size(121, 20);
             this.txtCodigoArticulo.TabIndex = 0;
@@ -81,6 +82,7 @@ namespace Presentacion
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(116, 39);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
             this.txtNombre.TabIndex = 1;
@@ -88,6 +90,7 @@ namespace Presentacion
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(116, 66);
+            this.txtDescripcion.MaxLength = 150;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 20);
             this.txtDescripcion.TabIndex = 2;
@@ -113,6 +116,7 @@ namespace Presentacion
             // txtImagen
             // 
             this.txtImagen.Location = new System.Drawing.Point(116, 149);
+            this.txtImagen.MaxLength = 1000;
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(121, 20);
             this.txtImagen.TabIndex = 5;
@@ -121,9 +125,11 @@ namespace Presentacion
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(116, 204);
+            this.txtPrecio.MaxLength = 20;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 8;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblCodigo
             // 
@@ -173,20 +179,20 @@ namespace Presentacion
             // lblImagen
             // 
             this.lblImagen.AutoSize = true;
-            this.lblImagen.Location = new System.Drawing.Point(65, 152);
+            this.lblImagen.Location = new System.Drawing.Point(23, 152);
             this.lblImagen.Name = "lblImagen";
-            this.lblImagen.Size = new System.Drawing.Size(45, 13);
+            this.lblImagen.Size = new System.Drawing.Size(87, 13);
             this.lblImagen.TabIndex = 14;
-            this.lblImagen.Text = "Imagen:";
+            this.lblImagen.Text = "Url de la Imagen:";
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(70, 207);
+            this.lblPrecio.Location = new System.Drawing.Point(37, 207);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(40, 13);
+            this.lblPrecio.Size = new System.Drawing.Size(73, 13);
             this.lblPrecio.TabIndex = 15;
-            this.lblPrecio.Text = "Precio:";
+            this.lblPrecio.Text = "Precio(00.00):";
             // 
             // pbxAgregarModificar
             // 
@@ -222,7 +228,7 @@ namespace Presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 274);
+            this.ClientSize = new System.Drawing.Size(492, 274);
             this.Controls.Add(this.btnLimpiarCampo);
             this.Controls.Add(this.btnProbarImagen);
             this.Controls.Add(this.pbxAgregarModificar);

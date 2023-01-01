@@ -46,7 +46,8 @@ namespace Presentacion
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtDescripción = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBoxDescripcion = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentanaPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxVentanaPrincipal)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,7 @@ namespace Presentacion
             this.dgvVentanaPrincipal.Name = "dgvVentanaPrincipal";
             this.dgvVentanaPrincipal.ReadOnly = true;
             this.dgvVentanaPrincipal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVentanaPrincipal.Size = new System.Drawing.Size(508, 230);
+            this.dgvVentanaPrincipal.Size = new System.Drawing.Size(443, 230);
             this.dgvVentanaPrincipal.TabIndex = 5;
             this.dgvVentanaPrincipal.SelectionChanged += new System.EventHandler(this.dgvVentanaPrincipal_SelectionChanged);
             // 
@@ -78,6 +79,7 @@ namespace Presentacion
             // txtFiltro
             // 
             this.txtFiltro.Location = new System.Drawing.Point(12, 35);
+            this.txtFiltro.MaxLength = 100;
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(218, 20);
             this.txtFiltro.TabIndex = 0;
@@ -146,6 +148,7 @@ namespace Presentacion
             this.cboOrden.Name = "cboOrden";
             this.cboOrden.Size = new System.Drawing.Size(150, 21);
             this.cboOrden.TabIndex = 3;
+            this.cboOrden.SelectedIndexChanged += new System.EventHandler(this.cboOrden_SelectedIndexChanged);
             // 
             // lblOrdenarPor
             // 
@@ -216,24 +219,32 @@ namespace Presentacion
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnRefrescar_Click);
             // 
-            // txtDescripción
+            // label1
             // 
-            this.txtDescripción.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripción.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripción.Location = new System.Drawing.Point(526, 62);
-            this.txtDescripción.Multiline = true;
-            this.txtDescripción.Name = "txtDescripción";
-            this.txtDescripción.ReadOnly = true;
-            this.txtDescripción.Size = new System.Drawing.Size(128, 230);
-            this.txtDescripción.TabIndex = 6;
-            this.txtDescripción.TextChanged += new System.EventHandler(this.txtDescripción_TextChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(458, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Descripción:";
+            // 
+            // richTextBoxDescripcion
+            // 
+            this.richTextBoxDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxDescripcion.Location = new System.Drawing.Point(461, 77);
+            this.richTextBoxDescripcion.Name = "richTextBoxDescripcion";
+            this.richTextBoxDescripcion.ReadOnly = true;
+            this.richTextBoxDescripcion.Size = new System.Drawing.Size(193, 214);
+            this.richTextBoxDescripcion.TabIndex = 14;
+            this.richTextBoxDescripcion.Text = "";
             // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 325);
-            this.Controls.Add(this.txtDescripción);
+            this.Controls.Add(this.richTextBoxDescripcion);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
@@ -285,7 +296,8 @@ namespace Presentacion
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtDescripción;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBoxDescripcion;
     }
 }
 
