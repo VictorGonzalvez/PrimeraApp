@@ -22,7 +22,6 @@ namespace Presentacion
         {
             InitializeComponent();
         }
-
         private void FrmVentanaPrincipal_Load(object sender, EventArgs e)
         {
             Text = "Catalogo";
@@ -55,7 +54,6 @@ namespace Presentacion
             aux.Add("Precio Menor a Mayor");
             aux.Add("Precio Mayor a Menor");
             cboOrden.DataSource = aux;
-
         }
         private void dgvVentanaPrincipal_SelectionChanged(object sender, EventArgs e)
         {
@@ -78,7 +76,6 @@ namespace Presentacion
         {
             Articulo seleccionado = new Articulo();
             seleccionado = (Articulo)dgvVentanaPrincipal.CurrentRow.DataBoundItem;
-
             try
             {
                 DialogResult respuesta = MessageBox.Show("¿Eliminar?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -89,7 +86,6 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString()) ;
             }
             cargar();
@@ -97,7 +93,6 @@ namespace Presentacion
         private void cargar()
         {
             dgvVentanaPrincipal.DataSource = negocio.listarOrdenado(cboOrden.SelectedItem.ToString());
-            //dgvVentanaPrincipal.DataSource = negocio.listarAvanzado(cboCategorias.SelectedItem.ToString(), cboMarcas.SelectedItem.ToString(), cboOrden.SelectedItem.ToString());
 
         }
         private void btnModificar_Click(object sender, EventArgs e)
@@ -106,10 +101,8 @@ namespace Presentacion
             articuloModificar =    (Articulo)dgvVentanaPrincipal.CurrentRow.DataBoundItem;
             frmAgregarModificar ventanaModificar = new frmAgregarModificar(articuloModificar);
             ventanaModificar.Text = articuloModificar.Nombre;
-            ventanaModificar.ShowDialog();
-            
-            cargar();
-            
+            ventanaModificar.ShowDialog();            
+            cargar();            
         }
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
@@ -119,7 +112,6 @@ namespace Presentacion
             if(filtro != "")
             {
                 listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
-
             }
             else
             {
@@ -129,8 +121,6 @@ namespace Presentacion
             dgvVentanaPrincipal.DataSource = listaFiltrada;
             ocultarColumnas();
             dgvVentanaPrincipal.AutoResizeColumns();
-
-
         }
         private void ocultarColumna(string columna)
         {
@@ -147,7 +137,8 @@ namespace Presentacion
             frmCategoriasMarcas ventana = new frmCategoriasMarcas(true);
             ventana.Text = "Lista de Marcas";
             ventana.ShowDialog();
-            cargarCombos();
+            //cargarCombos();
+            cargar();
         }
         private void btnCategorias_Click(object sender, EventArgs e)
         {
@@ -162,5 +153,4 @@ namespace Presentacion
             cargar();
         }
     }
-
 }
