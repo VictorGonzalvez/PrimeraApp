@@ -118,7 +118,7 @@ namespace Presentacion
         {
             if (!prueba)
             {               
-                MessageBox.Show("Ingrese una Url de internet o cargue una imagen local.");
+                MessageBox.Show("Ingrese una Url de internet.");
                 prueba = true;
             }
         }
