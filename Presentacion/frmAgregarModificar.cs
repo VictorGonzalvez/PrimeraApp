@@ -15,7 +15,7 @@ namespace Presentacion
     public partial class frmAgregarModificar : Form
     {
         private Articulo articulo = null;
-        bool prueba = false;
+        
         public frmAgregarModificar()//Ventana Nuevo articulo
         {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace Presentacion
             
             try
             {
-                if (articulo == null)
+                if (articulo == null && txtImagen.TextLength <= 1000)
                     articulo = new Articulo();
                 articulo.Codigo = txtCodigoArticulo.Text;
                 articulo.Nombre = txtNombre.Text;
@@ -116,14 +116,14 @@ namespace Presentacion
         }
         private void txtImagen_Enter(object sender, EventArgs e)
         {
-            if (!prueba)
-            {               
-                MessageBox.Show("Ingrese una Url de internet.");
-                prueba = true;
-            }
+            statuslblEstado.Text = "Ingrese una Url de una imagen de internet.";
         }
         private void btnProbarImagen_Click(object sender, EventArgs e)
         {
+            if (txtImagen.TextLength >= 1000)
+            {
+                MessageBox.Show("Su url es demasiado larga, por favor ingrese otra.");
+            }
             cargarImagen(txtImagen.Text);
         }
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -144,6 +144,11 @@ namespace Presentacion
                     e.Handled = true;
                 }
             }          
+        }
+
+        private void txtImagen_TextChanged(object sender, EventArgs e)
+        {
+            lblWarning.Text = txtImagen.TextLength.ToString();
         }
     }
 }

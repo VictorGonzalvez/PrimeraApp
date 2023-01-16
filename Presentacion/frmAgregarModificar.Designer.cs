@@ -48,7 +48,11 @@ namespace Presentacion
             this.pbxAgregarModificar = new System.Windows.Forms.PictureBox();
             this.btnProbarImagen = new System.Windows.Forms.Button();
             this.btnLimpiarCampo = new System.Windows.Forms.Button();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statuslblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAgregarModificar)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -116,10 +120,11 @@ namespace Presentacion
             // txtImagen
             // 
             this.txtImagen.Location = new System.Drawing.Point(116, 149);
-            this.txtImagen.MaxLength = 1000;
+            this.txtImagen.MaxLength = 1001;
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(121, 20);
             this.txtImagen.TabIndex = 5;
+            this.txtImagen.TextChanged += new System.EventHandler(this.txtImagen_TextChanged);
             this.txtImagen.Enter += new System.EventHandler(this.txtImagen_Enter);
             // 
             // txtPrecio
@@ -179,11 +184,11 @@ namespace Presentacion
             // lblImagen
             // 
             this.lblImagen.AutoSize = true;
-            this.lblImagen.Location = new System.Drawing.Point(23, 152);
+            this.lblImagen.Location = new System.Drawing.Point(37, 152);
             this.lblImagen.Name = "lblImagen";
-            this.lblImagen.Size = new System.Drawing.Size(87, 13);
+            this.lblImagen.Size = new System.Drawing.Size(73, 13);
             this.lblImagen.TabIndex = 14;
-            this.lblImagen.Text = "Url de la Imagen:";
+            this.lblImagen.Text = "Imagen(URL):";
             // 
             // lblPrecio
             // 
@@ -224,11 +229,37 @@ namespace Presentacion
             this.btnLimpiarCampo.UseVisualStyleBackColor = true;
             this.btnLimpiarCampo.Click += new System.EventHandler(this.btnLimpiarCampo_Click);
             // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.Location = new System.Drawing.Point(12, 101);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(0, 13);
+            this.lblWarning.TabIndex = 17;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statuslblEstado});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 252);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(492, 22);
+            this.statusStrip1.TabIndex = 18;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statuslblEstado
+            // 
+            this.statuslblEstado.Name = "statuslblEstado";
+            this.statuslblEstado.Size = new System.Drawing.Size(118, 17);
+            this.statuslblEstado.Text = "toolStripStatusLabel1";
+            // 
             // frmAgregarModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 274);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.btnLimpiarCampo);
             this.Controls.Add(this.btnProbarImagen);
             this.Controls.Add(this.pbxAgregarModificar);
@@ -255,6 +286,8 @@ namespace Presentacion
             this.Text = "frmAgregarModificar";
             this.Load += new System.EventHandler(this.frmAgregarModificar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAgregarModificar)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +314,8 @@ namespace Presentacion
         private System.Windows.Forms.PictureBox pbxAgregarModificar;
         private System.Windows.Forms.Button btnProbarImagen;
         private System.Windows.Forms.Button btnLimpiarCampo;
+        private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statuslblEstado;
     }
 }
