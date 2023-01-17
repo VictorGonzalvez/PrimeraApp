@@ -14,17 +14,18 @@ namespace Presentacion
 {
     public partial class frmAgregarCategoriaMarca : Form
     {
-        private Categoria categoria;
-        private Marca marca;
+        private Categoria categoria = null;
+        private Marca marca = null;
         private bool marcaActiva;
         private MarcaNegocio marcaNegocio = new MarcaNegocio();
         private CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
-        public frmAgregarCategoriaMarca(bool marca = false)
+        public frmAgregarCategoriaMarca(bool marca = false, Marca modificarMarca = null, Categoria modificarCategoria = null)
         {
             InitializeComponent();
             this.marcaActiva = marca;
         }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nuevo = txtAgregar.Text;
@@ -43,7 +44,24 @@ namespace Presentacion
 
         private void frmAgregarCategoriaMarca_Load(object sender, EventArgs e)
         {
+            if (marcaActiva)
+            {
 
+            }
+            else
+            {
+
+            }
+            
+
+        }
+        private void modificarMarca(Marca marca)
+        {
+            marcaNegocio.modificarMarca(marca);
+        }
+        private void modificarCategoria(Categoria categoria)
+        {
+            categoriaNegocio.modificarCategoria(categoria);
         }
     }
 }

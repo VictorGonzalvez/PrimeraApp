@@ -100,7 +100,23 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-
+        }
+        public void modificarMarca(Marca marca)
+        {
+            try
+            {
+                datos.setearConsulta("Update from Marcas where id = @id");
+                datos.setearParametro("@id", marca.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
