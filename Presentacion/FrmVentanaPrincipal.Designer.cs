@@ -59,7 +59,7 @@ namespace Presentacion
             this.dgvVentanaPrincipal.AllowUserToOrderColumns = true;
             this.dgvVentanaPrincipal.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dgvVentanaPrincipal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVentanaPrincipal.Location = new System.Drawing.Point(12, 61);
+            this.dgvVentanaPrincipal.Location = new System.Drawing.Point(10, 51);
             this.dgvVentanaPrincipal.Name = "dgvVentanaPrincipal";
             this.dgvVentanaPrincipal.ReadOnly = true;
             this.dgvVentanaPrincipal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -70,7 +70,7 @@ namespace Presentacion
             // Articulo
             // 
             this.Articulo.AutoSize = true;
-            this.Articulo.Location = new System.Drawing.Point(9, 19);
+            this.Articulo.Location = new System.Drawing.Point(7, 9);
             this.Articulo.Name = "Articulo";
             this.Articulo.Size = new System.Drawing.Size(55, 13);
             this.Articulo.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace Presentacion
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(12, 35);
+            this.txtFiltro.Location = new System.Drawing.Point(10, 25);
             this.txtFiltro.MaxLength = 100;
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(218, 20);
@@ -89,7 +89,7 @@ namespace Presentacion
             // 
             this.cboMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarcas.FormattingEnabled = true;
-            this.cboMarcas.Location = new System.Drawing.Point(305, 35);
+            this.cboMarcas.Location = new System.Drawing.Point(303, 25);
             this.cboMarcas.Name = "cboMarcas";
             this.cboMarcas.Size = new System.Drawing.Size(150, 21);
             this.cboMarcas.TabIndex = 1;
@@ -98,7 +98,7 @@ namespace Presentacion
             // 
             this.cboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategorias.FormattingEnabled = true;
-            this.cboCategorias.Location = new System.Drawing.Point(461, 34);
+            this.cboCategorias.Location = new System.Drawing.Point(459, 24);
             this.cboCategorias.Name = "cboCategorias";
             this.cboCategorias.Size = new System.Drawing.Size(150, 21);
             this.cboCategorias.TabIndex = 2;
@@ -106,7 +106,7 @@ namespace Presentacion
             // pbxVentanaPrincipal
             // 
             this.pbxVentanaPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxVentanaPrincipal.Location = new System.Drawing.Point(660, 61);
+            this.pbxVentanaPrincipal.Location = new System.Drawing.Point(658, 51);
             this.pbxVentanaPrincipal.Name = "pbxVentanaPrincipal";
             this.pbxVentanaPrincipal.Size = new System.Drawing.Size(215, 230);
             this.pbxVentanaPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -116,7 +116,7 @@ namespace Presentacion
             // lblAvanzados
             // 
             this.lblAvanzados.AutoSize = true;
-            this.lblAvanzados.Location = new System.Drawing.Point(236, 38);
+            this.lblAvanzados.Location = new System.Drawing.Point(234, 28);
             this.lblAvanzados.Name = "lblAvanzados";
             this.lblAvanzados.Size = new System.Drawing.Size(63, 13);
             this.lblAvanzados.TabIndex = 6;
@@ -125,7 +125,7 @@ namespace Presentacion
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(302, 19);
+            this.lblMarca.Location = new System.Drawing.Point(300, 9);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(37, 13);
             this.lblMarca.TabIndex = 7;
@@ -134,7 +134,7 @@ namespace Presentacion
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(458, 19);
+            this.lblCategoria.Location = new System.Drawing.Point(456, 9);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 8;
@@ -144,7 +144,7 @@ namespace Presentacion
             // 
             this.cboOrden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOrden.FormattingEnabled = true;
-            this.cboOrden.Location = new System.Drawing.Point(617, 34);
+            this.cboOrden.Location = new System.Drawing.Point(615, 24);
             this.cboOrden.Name = "cboOrden";
             this.cboOrden.Size = new System.Drawing.Size(150, 21);
             this.cboOrden.TabIndex = 3;
@@ -153,7 +153,7 @@ namespace Presentacion
             // lblOrdenarPor
             // 
             this.lblOrdenarPor.AutoSize = true;
-            this.lblOrdenarPor.Location = new System.Drawing.Point(617, 19);
+            this.lblOrdenarPor.Location = new System.Drawing.Point(615, 9);
             this.lblOrdenarPor.Name = "lblOrdenarPor";
             this.lblOrdenarPor.Size = new System.Drawing.Size(67, 13);
             this.lblOrdenarPor.TabIndex = 10;
@@ -161,37 +161,37 @@ namespace Presentacion
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 298);
+            this.btnAgregar.Location = new System.Drawing.Point(10, 288);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(94, 23);
             this.btnAgregar.TabIndex = 7;
-            this.btnAgregar.Text = "Agregar Articulo";
+            this.btnAgregar.Text = "Agregar Artículo";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(112, 298);
+            this.btnModificar.Location = new System.Drawing.Point(110, 288);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(99, 23);
             this.btnModificar.TabIndex = 8;
-            this.btnModificar.Text = "Modificar Articulo";
+            this.btnModificar.Text = "Modificar Artículo";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(217, 298);
+            this.btnEliminar.Location = new System.Drawing.Point(215, 288);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(104, 23);
             this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "Eliminar Articulo";
+            this.btnEliminar.Text = "Eliminar Artículo";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnMarcas
             // 
-            this.btnMarcas.Location = new System.Drawing.Point(327, 298);
+            this.btnMarcas.Location = new System.Drawing.Point(325, 288);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(270, 23);
             this.btnMarcas.TabIndex = 10;
@@ -201,7 +201,7 @@ namespace Presentacion
             // 
             // btnCategorias
             // 
-            this.btnCategorias.Location = new System.Drawing.Point(605, 298);
+            this.btnCategorias.Location = new System.Drawing.Point(603, 288);
             this.btnCategorias.Name = "btnCategorias";
             this.btnCategorias.Size = new System.Drawing.Size(270, 23);
             this.btnCategorias.TabIndex = 11;
@@ -211,7 +211,7 @@ namespace Presentacion
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(773, 32);
+            this.btnBuscar.Location = new System.Drawing.Point(771, 22);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(102, 23);
             this.btnBuscar.TabIndex = 4;
@@ -222,7 +222,7 @@ namespace Presentacion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(458, 61);
+            this.label1.Location = new System.Drawing.Point(456, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 13;
@@ -231,7 +231,7 @@ namespace Presentacion
             // richTextBoxDescripcion
             // 
             this.richTextBoxDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxDescripcion.Location = new System.Drawing.Point(461, 77);
+            this.richTextBoxDescripcion.Location = new System.Drawing.Point(459, 67);
             this.richTextBoxDescripcion.Name = "richTextBoxDescripcion";
             this.richTextBoxDescripcion.ReadOnly = true;
             this.richTextBoxDescripcion.Size = new System.Drawing.Size(193, 214);

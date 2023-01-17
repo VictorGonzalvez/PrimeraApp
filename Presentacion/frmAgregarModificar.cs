@@ -60,8 +60,7 @@ namespace Presentacion
             Close();
         }
         private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            
+        {            
             try
             {
                 if (articulo == null && txtImagen.TextLength <= 1000)
@@ -74,7 +73,6 @@ namespace Presentacion
                 articulo.Tipo = new Categoria();
                 articulo.Tipo = (Categoria)cboCategoria.SelectedItem;
                 articulo.ImagenUrl = txtImagen.Text;
-
                 articulo.Precio = txtPrecio.Text;
                 if (txtNombre.Text != "")
                 {
@@ -114,10 +112,6 @@ namespace Presentacion
         {
             txtImagen.Clear();
         }
-        private void txtImagen_Enter(object sender, EventArgs e)
-        {
-            statuslblEstado.Text = "Ingrese una Url de una imagen de internet.";
-        }
         private void btnProbarImagen_Click(object sender, EventArgs e)
         {
             if (txtImagen.TextLength >= 1000)
@@ -145,10 +139,37 @@ namespace Presentacion
                 }
             }          
         }
-
-        private void txtImagen_TextChanged(object sender, EventArgs e)
+        private void txtImagen_Enter(object sender, EventArgs e)
         {
-            lblWarning.Text = txtImagen.TextLength.ToString();
+            status("Ingrese una Url de una imagen de internet.");
+        }
+        private void txtCodigoArticulo_Enter(object sender, EventArgs e)
+        {
+            status("Ingrese código del Artículo.");
+        }
+        private void status(string estado)
+        {
+            statuslblEstado.Text = estado;
+        }//
+        private void txtNombre_Enter(object sender, EventArgs e)
+        {
+            status("Ingrese nombre del Artículo.");
+        }
+        private void txtDescripcion_Enter(object sender, EventArgs e)
+        {
+            status("Ingrese una descripción para el Artículo.");
+        }
+        private void txtPrecio_Enter(object sender, EventArgs e)
+        {
+            status("Ingrese un precio para el Artículo(solo números y un punto)");
+        }
+        private void btnProbarImagen_MouseEnter(object sender, EventArgs e)
+        {
+            status("Prueba la Url ingresada.");
+        }
+        private void btnLimpiarCampo_MouseEnter(object sender, EventArgs e)
+        {
+            status("Limpia la Url ingresada.");
         }
     }
 }

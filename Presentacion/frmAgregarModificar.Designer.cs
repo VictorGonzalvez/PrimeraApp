@@ -48,7 +48,6 @@ namespace Presentacion
             this.pbxAgregarModificar = new System.Windows.Forms.PictureBox();
             this.btnProbarImagen = new System.Windows.Forms.Button();
             this.btnLimpiarCampo = new System.Windows.Forms.Button();
-            this.lblWarning = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statuslblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAgregarModificar)).BeginInit();
@@ -82,6 +81,7 @@ namespace Presentacion
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
             this.txtCodigoArticulo.Size = new System.Drawing.Size(121, 20);
             this.txtCodigoArticulo.TabIndex = 0;
+            this.txtCodigoArticulo.Enter += new System.EventHandler(this.txtCodigoArticulo_Enter);
             // 
             // txtNombre
             // 
@@ -90,6 +90,7 @@ namespace Presentacion
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
             this.txtNombre.TabIndex = 1;
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             // 
             // txtDescripcion
             // 
@@ -98,6 +99,7 @@ namespace Presentacion
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 20);
             this.txtDescripcion.TabIndex = 2;
+            this.txtDescripcion.Enter += new System.EventHandler(this.txtDescripcion_Enter);
             // 
             // cboMarca
             // 
@@ -124,7 +126,6 @@ namespace Presentacion
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(121, 20);
             this.txtImagen.TabIndex = 5;
-            this.txtImagen.TextChanged += new System.EventHandler(this.txtImagen_TextChanged);
             this.txtImagen.Enter += new System.EventHandler(this.txtImagen_Enter);
             // 
             // txtPrecio
@@ -134,6 +135,7 @@ namespace Presentacion
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 8;
+            this.txtPrecio.Enter += new System.EventHandler(this.txtPrecio_Enter);
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblCodigo
@@ -143,7 +145,7 @@ namespace Presentacion
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(98, 13);
             this.lblCodigo.TabIndex = 9;
-            this.lblCodigo.Text = "Codigo de Artículo:";
+            this.lblCodigo.Text = "Código de Artículo:";
             // 
             // lblNombre
             // 
@@ -218,6 +220,7 @@ namespace Presentacion
             this.btnProbarImagen.Text = "Probar Imagen";
             this.btnProbarImagen.UseVisualStyleBackColor = true;
             this.btnProbarImagen.Click += new System.EventHandler(this.btnProbarImagen_Click);
+            this.btnProbarImagen.MouseEnter += new System.EventHandler(this.btnProbarImagen_MouseEnter);
             // 
             // btnLimpiarCampo
             // 
@@ -228,14 +231,7 @@ namespace Presentacion
             this.btnLimpiarCampo.Text = "Limpiar Campo";
             this.btnLimpiarCampo.UseVisualStyleBackColor = true;
             this.btnLimpiarCampo.Click += new System.EventHandler(this.btnLimpiarCampo_Click);
-            // 
-            // lblWarning
-            // 
-            this.lblWarning.AutoSize = true;
-            this.lblWarning.Location = new System.Drawing.Point(12, 101);
-            this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(0, 13);
-            this.lblWarning.TabIndex = 17;
+            this.btnLimpiarCampo.MouseEnter += new System.EventHandler(this.btnLimpiarCampo_MouseEnter);
             // 
             // statusStrip1
             // 
@@ -250,8 +246,7 @@ namespace Presentacion
             // statuslblEstado
             // 
             this.statuslblEstado.Name = "statuslblEstado";
-            this.statuslblEstado.Size = new System.Drawing.Size(118, 17);
-            this.statuslblEstado.Text = "toolStripStatusLabel1";
+            this.statuslblEstado.Size = new System.Drawing.Size(0, 17);
             // 
             // frmAgregarModificar
             // 
@@ -259,7 +254,6 @@ namespace Presentacion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 274);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.btnLimpiarCampo);
             this.Controls.Add(this.btnProbarImagen);
             this.Controls.Add(this.pbxAgregarModificar);
@@ -314,7 +308,6 @@ namespace Presentacion
         private System.Windows.Forms.PictureBox pbxAgregarModificar;
         private System.Windows.Forms.Button btnProbarImagen;
         private System.Windows.Forms.Button btnLimpiarCampo;
-        private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statuslblEstado;
     }

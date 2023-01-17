@@ -68,7 +68,7 @@ namespace Presentacion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarModificar ventana = new frmAgregarModificar();
-            ventana.Text = "Nuevo Articulo";
+            ventana.Text = "Nuevo Artículo";
             ventana.ShowDialog();
             cargar();
         }
@@ -93,7 +93,6 @@ namespace Presentacion
         private void cargar()
         {
             dgvVentanaPrincipal.DataSource = negocio.listarOrdenado(cboOrden.SelectedItem.ToString());
-
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -136,16 +135,14 @@ namespace Presentacion
         {
             frmCategoriasMarcas ventana = new frmCategoriasMarcas(true);
             ventana.Text = "Lista de Marcas";
-            ventana.ShowDialog();
-            //cargarCombos();
+            ventana.ShowDialog();           
             cargar();
         }
         private void btnCategorias_Click(object sender, EventArgs e)
         {
             frmCategoriasMarcas ventana = new frmCategoriasMarcas();
             ventana.Text = "Lista de Categorias";
-            ventana.ShowDialog();
-            //cargarCombos();
+            ventana.ShowDialog();           
             cargar();
         }
         private void cboOrden_SelectedIndexChanged(object sender, EventArgs e)

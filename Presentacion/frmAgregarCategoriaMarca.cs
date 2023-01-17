@@ -21,7 +21,6 @@ namespace Presentacion
             InitializeComponent();
             this.marca = marca;
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nuevo = txtAgregar.Text;
@@ -36,8 +35,6 @@ namespace Presentacion
                 MessageBox.Show("Agregado Exitosamente");
             }
             Close();
-
-
         }
     }
 }

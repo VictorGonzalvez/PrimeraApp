@@ -22,7 +22,6 @@ namespace Presentacion
         }
         private MarcaNegocio marcaNegocio = new MarcaNegocio();
         private CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-
         private void CategoriasMarcas_Load(object sender, EventArgs e)
         {
             if (marcas)
@@ -60,7 +59,6 @@ namespace Presentacion
                 cargarListaCategorias();
 
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (marcas)
@@ -69,7 +67,7 @@ namespace Presentacion
                 seleccionado = (Marca)dgvCategoriasMarcas.CurrentRow.DataBoundItem;
                 try
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Eliminar?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult respuesta = MessageBox.Show("¿Eliminar?, si existe algun articulo relacionado a " + dgvCategoriasMarcas.CurrentRow.DataBoundItem.ToString() + " se eliminará.", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (respuesta == DialogResult.Yes)
                     {
                         marcaNegocio.eliminarMarca(seleccionado);
@@ -87,7 +85,7 @@ namespace Presentacion
                 seleccionado = (Categoria)dgvCategoriasMarcas.CurrentRow.DataBoundItem;
                 try
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Eliminar?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult respuesta = MessageBox.Show("¿Eliminar?, si existe algun articulo relacionado a " + dgvCategoriasMarcas.CurrentRow.DataBoundItem.ToString() + " se eliminará.", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (respuesta == DialogResult.Yes)
                     {
                         categoriaNegocio.eliminarCategoria(seleccionado);
