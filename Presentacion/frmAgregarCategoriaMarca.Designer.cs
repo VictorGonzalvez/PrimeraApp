@@ -64,6 +64,7 @@ namespace Presentacion
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar";
+            this.Load += new System.EventHandler(this.frmAgregarCategoriaMarca_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

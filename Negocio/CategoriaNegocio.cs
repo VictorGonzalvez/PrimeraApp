@@ -16,7 +16,6 @@ namespace Negocio
         {
             List<Categoria> lista = new List<Categoria>();
             string consulta = "select Id, Descripcion from CATEGORIAS";
-
             try
             {
                 datos.setearConsulta(consulta);
@@ -101,6 +100,24 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public void modificarCategoria(Categoria categoria)
+        {
+            try
+            {
+                datos.setearConsulta("Update from Categorias where id = @id");
+                datos.setearParametro("@id", categoria.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
