@@ -101,11 +101,12 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void modificarMarca(Marca marca)
+        public void modificarMarca(Marca marca, string descripcion)
         {
             try
             {
-                datos.setearConsulta("Update from Marcas where id = @id");
+                datos.setearConsulta("Update Marcas set Descripcion = @descripcion where id = @id");
+                datos.setearParametro("@descripcion", descripcion);
                 datos.setearParametro("@id", marca.Id);
                 datos.ejecutarAccion();
             }

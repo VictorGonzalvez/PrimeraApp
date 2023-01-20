@@ -101,17 +101,17 @@ namespace Negocio
             }
 
         }
-        public void modificarCategoria(Categoria categoria)
+        public void modificarCategoria(Categoria categoria, string descripcion)
         {
             try
             {
-                datos.setearConsulta("Update from Categorias where id = @id");
+                datos.setearConsulta("Update Categorias set Descripcion = @descripcion where id = @id");
                 datos.setearParametro("@id", categoria.Id);
+                datos.setearParametro("@descripcion", descripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally

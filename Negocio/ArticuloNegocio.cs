@@ -115,21 +115,15 @@ namespace Negocio
                 datos.setearParametro("@ImagenUrl",nuevo2.ImagenUrl);
                 datos.setearParametro("@Precio",nuevo2.Precio);
                 datos.ejecutarAccion();
-
-
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
-
         }
         public void modificarArticulo(Articulo articuloModificar)
         {

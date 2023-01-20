@@ -20,48 +20,80 @@ namespace Presentacion
         private MarcaNegocio marcaNegocio = new MarcaNegocio();
         private CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
-        public frmAgregarCategoriaMarca(bool marca = false, Marca modificarMarca = null, Categoria modificarCategoria = null)
+        public frmAgregarCategoriaMarca(bool marca = false)
         {
             InitializeComponent();
-            this.marcaActiva = marca;
+            marcaActiva = marca;
         }
-
+        public frmAgregarCategoriaMarca(Categoria categoria,bool marca = false)
+        {
+            InitializeComponent();
+            marcaActiva = marca;
+            this.categoria = categoria;
+            btnAgregar.Text = "Modificar categoria.";
+            Text = categoria.Descripcion;
+        }
+        public frmAgregarCategoriaMarca(Marca marca, bool marcas = false)
+        {
+            InitializeComponent();
+            marcaActiva = marcas;
+            this.marca = marca;
+            btnAgregar.Text = "Modificar Marca";
+            Text = marca.Descripcion;
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nuevo = txtAgregar.Text;
-            if(marcaActiva)
+            if (txtAgregar.Text != "")
             {
-                marcaNegocio.agregarMarca(nuevo);
-                MessageBox.Show("Agregado Exitosamente");
+                if (marcaActiva)
+                {
+                    if (marca != null)
+                    {
+                        marcaNegocio.modificarMarca(marca, txtAgregar.Text);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        marcaNegocio.agregarMarca(nuevo);
+                        MessageBox.Show("Agregado Exitosamente");
+
+                    }
+                }
+                else
+                {
+                    if (categoria != null)
+                    {
+                        categoriaNegocio.modificarCategoria(categoria, txtAgregar.Text);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        categoriaNegocio.agregarCategoria(nuevo);
+                        MessageBox.Show("Agregado Exitosamente");
+
+                    }
+                }
+                Close();
             }
             else
-            {
-                categoriaNegocio.agregarCategoria(nuevo);
-                MessageBox.Show("Agregado Exitosamente");
-            }
-            Close();
+                MessageBox.Show("Por favor ingrese un valor en el campo de texto.");
         }
 
         private void frmAgregarCategoriaMarca_Load(object sender, EventArgs e)
         {
-            if (marcaActiva)
+            if (marcaActiva)//si es marca y se pasa por parametro se carga en el txtbox
             {
-
+                if (marca != null)
+                    txtAgregar.Text = marca.Descripcion;
             }
             else
             {
-
+                if (categoria != null)
+                    txtAgregar.Text = categoria.Descripcion;
             }
             
 
-        }
-        private void modificarMarca(Marca marca)
-        {
-            marcaNegocio.modificarMarca(marca);
-        }
-        private void modificarCategoria(Categoria categoria)
-        {
-            categoriaNegocio.modificarCategoria(categoria);
         }
     }
 }

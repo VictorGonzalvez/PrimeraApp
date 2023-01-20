@@ -15,6 +15,7 @@ namespace Presentacion
     public partial class frmAgregarModificar : Form
     {
         private Articulo articulo = null;
+        private string instruccionAnterior;
         
         public frmAgregarModificar()//Ventana Nuevo articulo
         {
@@ -104,7 +105,6 @@ namespace Presentacion
             }
             catch (Exception)
             {
-
                 pbxAgregarModificar.Load("https://cdn-icons-png.flaticon.com/512/85/85488.png");
             }
         }
@@ -150,7 +150,7 @@ namespace Presentacion
         private void status(string estado)
         {
             statuslblEstado.Text = estado;
-        }//
+        }
         private void txtNombre_Enter(object sender, EventArgs e)
         {
             status("Ingrese nombre del Artículo.");
@@ -165,11 +165,25 @@ namespace Presentacion
         }
         private void btnProbarImagen_MouseEnter(object sender, EventArgs e)
         {
+            instruccionAnterior = statuslblEstado.Text;
             status("Prueba la Url ingresada.");
         }
         private void btnLimpiarCampo_MouseEnter(object sender, EventArgs e)
         {
+            instruccionAnterior = statuslblEstado.Text;
             status("Limpia la Url ingresada.");
+        }
+        private void btnProbarImagen_MouseLeave(object sender, EventArgs e)
+        {
+            statuslblEstado.Text = instruccionAnterior;
+        }
+        private void btnAceptar_MouseEnter(object sender, EventArgs e)
+        {
+            status("Completa la solicitud con los datos ingresados.");
+        }
+        private void btnCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            status("Vuelve a la ventana principal y descarta los cambios realizados.");
         }
     }
 }

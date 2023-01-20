@@ -93,6 +93,7 @@ namespace Presentacion
         private void cargar()
         {
             dgvVentanaPrincipal.DataSource = negocio.listarOrdenado(cboOrden.SelectedItem.ToString());
+            cargarCombos();
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -137,6 +138,7 @@ namespace Presentacion
             ventana.Text = "Lista de Marcas";
             ventana.ShowDialog();           
             cargar();
+            
         }
         private void btnCategorias_Click(object sender, EventArgs e)
         {
@@ -144,6 +146,7 @@ namespace Presentacion
             ventana.Text = "Lista de Categorias";
             ventana.ShowDialog();           
             cargar();
+            
         }
         private void cboOrden_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -78,7 +78,7 @@ namespace Presentacion
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(10, 25);
+            this.txtFiltro.Location = new System.Drawing.Point(10, 23);
             this.txtFiltro.MaxLength = 100;
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(218, 20);
@@ -89,7 +89,7 @@ namespace Presentacion
             // 
             this.cboMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarcas.FormattingEnabled = true;
-            this.cboMarcas.Location = new System.Drawing.Point(303, 25);
+            this.cboMarcas.Location = new System.Drawing.Point(459, 23);
             this.cboMarcas.Name = "cboMarcas";
             this.cboMarcas.Size = new System.Drawing.Size(150, 21);
             this.cboMarcas.TabIndex = 1;
@@ -98,7 +98,7 @@ namespace Presentacion
             // 
             this.cboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategorias.FormattingEnabled = true;
-            this.cboCategorias.Location = new System.Drawing.Point(459, 24);
+            this.cboCategorias.Location = new System.Drawing.Point(615, 23);
             this.cboCategorias.Name = "cboCategorias";
             this.cboCategorias.Size = new System.Drawing.Size(150, 21);
             this.cboCategorias.TabIndex = 2;
@@ -116,7 +116,7 @@ namespace Presentacion
             // lblAvanzados
             // 
             this.lblAvanzados.AutoSize = true;
-            this.lblAvanzados.Location = new System.Drawing.Point(234, 28);
+            this.lblAvanzados.Location = new System.Drawing.Point(390, 27);
             this.lblAvanzados.Name = "lblAvanzados";
             this.lblAvanzados.Size = new System.Drawing.Size(63, 13);
             this.lblAvanzados.TabIndex = 6;
@@ -125,7 +125,7 @@ namespace Presentacion
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(300, 9);
+            this.lblMarca.Location = new System.Drawing.Point(456, 9);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(37, 13);
             this.lblMarca.TabIndex = 7;
@@ -134,7 +134,7 @@ namespace Presentacion
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(456, 9);
+            this.lblCategoria.Location = new System.Drawing.Point(612, 9);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 8;
@@ -144,7 +144,7 @@ namespace Presentacion
             // 
             this.cboOrden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOrden.FormattingEnabled = true;
-            this.cboOrden.Location = new System.Drawing.Point(615, 24);
+            this.cboOrden.Location = new System.Drawing.Point(234, 23);
             this.cboOrden.Name = "cboOrden";
             this.cboOrden.Size = new System.Drawing.Size(150, 21);
             this.cboOrden.TabIndex = 3;
@@ -153,7 +153,7 @@ namespace Presentacion
             // lblOrdenarPor
             // 
             this.lblOrdenarPor.AutoSize = true;
-            this.lblOrdenarPor.Location = new System.Drawing.Point(615, 9);
+            this.lblOrdenarPor.Location = new System.Drawing.Point(231, 9);
             this.lblOrdenarPor.Name = "lblOrdenarPor";
             this.lblOrdenarPor.Size = new System.Drawing.Size(67, 13);
             this.lblOrdenarPor.TabIndex = 10;
@@ -262,6 +262,7 @@ namespace Presentacion
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.Articulo);
             this.Controls.Add(this.dgvVentanaPrincipal);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(903, 364);
             this.MinimumSize = new System.Drawing.Size(903, 364);

@@ -63,6 +63,9 @@ namespace Presentacion
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.Enter += new System.EventHandler(this.btnAceptar_MouseEnter);
+            this.btnAceptar.MouseEnter += new System.EventHandler(this.btnAceptar_MouseEnter);
+            this.btnAceptar.MouseLeave += new System.EventHandler(this.btnProbarImagen_MouseLeave);
             // 
             // btnCancelar
             // 
@@ -73,6 +76,9 @@ namespace Presentacion
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Enter += new System.EventHandler(this.btnCancelar_MouseEnter);
+            this.btnCancelar.MouseEnter += new System.EventHandler(this.btnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.btnProbarImagen_MouseLeave);
             // 
             // txtCodigoArticulo
             // 
@@ -220,7 +226,9 @@ namespace Presentacion
             this.btnProbarImagen.Text = "Probar Imagen";
             this.btnProbarImagen.UseVisualStyleBackColor = true;
             this.btnProbarImagen.Click += new System.EventHandler(this.btnProbarImagen_Click);
+            this.btnProbarImagen.Enter += new System.EventHandler(this.btnProbarImagen_MouseEnter);
             this.btnProbarImagen.MouseEnter += new System.EventHandler(this.btnProbarImagen_MouseEnter);
+            this.btnProbarImagen.MouseLeave += new System.EventHandler(this.btnProbarImagen_MouseLeave);
             // 
             // btnLimpiarCampo
             // 
@@ -231,7 +239,9 @@ namespace Presentacion
             this.btnLimpiarCampo.Text = "Limpiar Campo";
             this.btnLimpiarCampo.UseVisualStyleBackColor = true;
             this.btnLimpiarCampo.Click += new System.EventHandler(this.btnLimpiarCampo_Click);
+            this.btnLimpiarCampo.Enter += new System.EventHandler(this.btnLimpiarCampo_MouseEnter);
             this.btnLimpiarCampo.MouseEnter += new System.EventHandler(this.btnLimpiarCampo_MouseEnter);
+            this.btnLimpiarCampo.MouseLeave += new System.EventHandler(this.btnProbarImagen_MouseLeave);
             // 
             // statusStrip1
             // 
@@ -240,6 +250,7 @@ namespace Presentacion
             this.statusStrip1.Location = new System.Drawing.Point(0, 252);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(492, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 18;
             this.statusStrip1.Text = "statusStrip1";
             // 

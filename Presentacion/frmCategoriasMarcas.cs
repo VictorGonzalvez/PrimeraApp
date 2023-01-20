@@ -15,6 +15,8 @@ namespace Presentacion
     public partial class frmCategoriasMarcas : Form
     {
         private bool marcas;
+        private Marca marcaSeleccionada;
+        private Categoria categoriaSeleccionada;
         public frmCategoriasMarcas(bool marcas = false)//Inicia lista de categorias si es false, Marcas si es true
         {
             InitializeComponent();
@@ -40,10 +42,12 @@ namespace Presentacion
         private void cargarListaMarcas()
         {
             dgvCategoriasMarcas.DataSource = marcaNegocio.listar();
+            dgvCategoriasMarcas.Columns[0].Visible = false;
         }
         private void cargarListaCategorias()
         {
             dgvCategoriasMarcas.DataSource = categoriaNegocio.listar();
+            dgvCategoriasMarcas.Columns[0].Visible = false;
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -95,6 +99,25 @@ namespace Presentacion
                 {
                     MessageBox.Show(ex.ToString());
                 }
+                cargarListaCategorias();
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (marcas)
+            {
+                marcaSeleccionada = (Marca)dgvCategoriasMarcas.CurrentRow.DataBoundItem;
+                frmAgregarCategoriaMarca ventana = new frmAgregarCategoriaMarca(marcaSeleccionada, marcas);
+                
+                ventana.ShowDialog();
+                cargarListaMarcas();
+            }
+            else
+            {
+                categoriaSeleccionada = (Categoria)dgvCategoriasMarcas.CurrentRow.DataBoundItem;
+                frmAgregarCategoriaMarca ventana = new frmAgregarCategoriaMarca(categoriaSeleccionada, marcas);
+                ventana.ShowDialog();
                 cargarListaCategorias();
             }
         }
